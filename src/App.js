@@ -56,8 +56,7 @@ function App() {
       <BrowserRouter>
         <NavBar />
         {/* <SearchForm handleSearchSubmit={handleSearchSubmit} /> */}
-        <PhotoList photos={photoApiData.data} />
-        <RouteList handleSave={uploadPhoto} />
+        <RouteList handleSave={uploadPhoto} photos={photoApiData.data}/>
       </BrowserRouter>
     </div>
   );

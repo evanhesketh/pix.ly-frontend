@@ -23,7 +23,7 @@ function NavBar() {
         </NavLink>
           <ul className="navbar-nav ms-auto">
             <li className="nav-item me-4">
-              <NavLink className="nav-link" to="/profile">
+              <NavLink className="nav-link" to="/upload">
                 Upload a photo
               </NavLink>
             </li>

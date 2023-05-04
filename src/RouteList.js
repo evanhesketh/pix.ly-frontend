@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import UploadForm from "./UploadForm";
+import PhotoList from "./PhotoList";
 
 /**
  * List of routes for App.
@@ -13,11 +14,11 @@ import UploadForm from "./UploadForm";
  *
  * App -> RouteList
  */
-function RouteList({ handleSave }) {
+function RouteList({ handleSave, photos }) {
 
   return (
     <Routes>
-      <Route path="/" />
+      <Route path="/" element={<PhotoList photos={photos} />}/>
       <Route path="/upload" element={<UploadForm handleSave={handleSave}/>} />
       {/* <Route path="/edit/:id" element={}/> */}
       <Route path="/*" element={<Navigate to="/" />} />
