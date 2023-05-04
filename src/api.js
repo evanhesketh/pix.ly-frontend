@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = process.env.REACT_APP_BASE_URL || "http://localhost:5001";
 
 /** API Class
- * 
+ *
  * Static class tying together methods used to get/send to to the API.
  */
 
@@ -24,14 +24,27 @@ class PixlyApi {
     }
 
     /** Takes photo, description:
-     * 
+     *
      *  (cat.jpg, "hi")
      */
-    static async uploadPhoto (photo, description) {
-        let res = await axios.post(`${BASE_URL}/upload`, {photo, description}, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-            // transformRequest: formData => formData,
-          });
-        return 
+
+    static async uploadPhoto (photo) {
+        console.log("inside uploadPhoto, ", photo)
+        const formData = new FormData();
+        formData.append("photo", photo);
+        console.log("formData object ", formData)
+        const config = {
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        };
+
+        const url = `${BASE_URL}/upload`;
+
+        let res = await axios.post(url, formData, config);
+
+        return res.data.photo;
     }
 }
+
+export default PixlyApi;

@@ -16,18 +16,20 @@ import { useNavigate } from "react-router-dom";
  *
  */
 
-const INITIAL_FORM_DATA = {photo: null, description: ""};
+const INITIAL_FORM_DATA = {photo: ""};
 
 function UploadForm({handleSave}) {
   const [formData, setFormData] = useState(INITIAL_FORM_DATA);
   const navigate = useNavigate();
+
+  console.log("formData in UploadForm", formData)
 
   /** Update form input. */
   function handleChange(evt) {
     const input = evt.target;
     setFormData((formData) => ({
       ...formData,
-      [input.name]: input.value,
+      [input.name]: input.files[0],
     }));
   }
 
@@ -38,10 +40,12 @@ function UploadForm({handleSave}) {
       await handleSave(formData);
       navigate("/");
     } catch (err) {
-      setFormData({ ...formData, errors: err });
+      console.log("error in handleSubmit", err)
+      setFormData({ ...formData, errors: [err] });
     }
   }
 
+  //TODO: look into useRef hook (later)
   return (
     <div className="UploadForm Form col-md-4 offset-md-4">
       <h3>Upload a photo!</h3>
@@ -54,10 +58,12 @@ function UploadForm({handleSave}) {
           type="file"
           id="UploadForm-photo"
           name="photo"
-          value={formData.photo}
+          // value={formData.photo}
           aria-label="Photo"
+          onChange={handleChange}
+
         />
-        <label htmlFor="UploadForm-description">Describe your photo</label>
+        {/* <label htmlFor="UploadForm-description">Describe your photo</label>
         <input
           className="form-control"
           id="UploadForm-description"
@@ -65,7 +71,8 @@ function UploadForm({handleSave}) {
           onChange={handleChange}
           value={formData.description}
           aria-label="Decription"
-        />
+        /> */}
+        <button>Submit</button>
       </form>
       </div>
   );

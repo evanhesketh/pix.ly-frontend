@@ -15,7 +15,7 @@ import Photo from "./Photo"
 function PhotoList({photos}) {
   return (
     <div className="PhotoList">
-      {photos.map(photo => <Photo photo={photo}/>)}
+      {photos.map(photo => <Photo key={photo.id} photo={photo}/>)}
     </div>
   );
 }

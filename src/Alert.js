@@ -13,7 +13,7 @@
 function Alert({error, type}) {
   return (
     <div className={`Alert alert ${type} role=alert`}>
-      <div className="Alert-msg">{error}</div>
+      <div className="Alert-msg">{error.message}</div>
     </div>
   );
 }
