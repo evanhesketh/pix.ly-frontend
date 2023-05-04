@@ -45,6 +45,14 @@ class PixlyApi {
 
         return res.data.photo;
     }
+
+    /** Create a new photo by editing current photo */
+
+    static async editPhoto(key) {
+        console.log("key in edit photo", key)
+        let res = await axios.post(`${BASE_URL}/edit`, {"key": key});
+        return res.data.photo;
+    }
 }
 
 export default PixlyApi;

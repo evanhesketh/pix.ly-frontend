@@ -51,12 +51,17 @@ function App() {
     return <div>Getting photos...</div>;
   }
 
+  async function editPhoto(key) {
+    const editedPhotoData = await PixlyApi.editPhoto(key);
+    setPhotoApiData((curr) => ({ ...curr, data: [...curr.data, editedPhotoData] }));
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
         <NavBar />
         {/* <SearchForm handleSearchSubmit={handleSearchSubmit} /> */}
-        <RouteList handleSave={uploadPhoto} photos={photoApiData.data}/>
+        <RouteList handleSave={uploadPhoto} photos={photoApiData.data} handleEdit={editPhoto}/>
       </BrowserRouter>
     </div>
   );
