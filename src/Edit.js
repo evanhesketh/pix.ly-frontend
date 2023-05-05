@@ -32,7 +32,7 @@ function Edit({ photos, handleEdit }) {
 
   async function handleClick(evt) {
     try {
-      await handleEdit(photo[0].largeUrl, evt.target.id);
+      await handleEdit(photo[0].key, evt.target.id);
       navigate("/");
     } catch (err) {
       console.log("error in edit", err);
