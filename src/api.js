@@ -29,10 +29,9 @@ class PixlyApi {
      */
 
     static async uploadPhoto (photo) {
-        console.log("inside uploadPhoto, ", photo)
+
         const formData = new FormData();
         formData.append("photo", photo);
-        console.log("formData object ", formData)
         const config = {
             headers: {
                 "content-type": "multipart/form-data"
@@ -40,10 +39,12 @@ class PixlyApi {
         };
 
         const url = `${BASE_URL}/upload`;
-
-        let res = await axios.post(url, formData, config);
-
-        return res.data.photo;
+        try {
+            let res = await axios.post(url, formData, config);
+            return res.data.photo;
+        } catch(err) {
+            throw new Error("Image already exists")
+        }
     }
 
     /** Create a new photo by editing current photo */

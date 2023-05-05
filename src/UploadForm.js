@@ -41,8 +41,7 @@ function UploadForm({ handleSave }) {
       await handleSave(formData);
       navigate("/");
     } catch (err) {
-      console.log("error in handleSubmit", err);
-      setFormData({ ...formData, errors: [err] });
+      setFormData({ ...formData, errors: [err.message] });
     }
   }
 
