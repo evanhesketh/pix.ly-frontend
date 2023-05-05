@@ -43,11 +43,11 @@ function Edit({ photos, handleEdit }) {
     <div className="Edit text-center">
       {error.error && <Alert error={error.error} type="alert-danger" />}
       <h4 className="Edit-heading">Choose a filter to apply to your image</h4>
-      <Photo photo={photo[0]} />
+      <Photo photo={photo[0]} url={photo[0].largeUrl}/>
       <button className="btn btn-secondary" onClick={handleClick} id='bw'>
         Black and White
       </button>
-      <button onClick={handleClick} id='posterize'>Posterize</button>
+      <button className="btn btn-secondary" onClick={handleClick} id='posterize'>Posterize</button>
     </div>
   );
 }

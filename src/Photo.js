@@ -15,8 +15,8 @@ import "./Photo.css";
 
 //TODO: need description field
 
-function Photo({ photo }) {
-  const { id, url, make, model, date, description } = photo;
+function Photo({ photo, url }) {
+  const { id, make, model, date, description } = photo;
 
   return (
     <div className="Photo">

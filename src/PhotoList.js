@@ -16,7 +16,7 @@ function PhotoList({photos}) {
   console.log("photos ", photos)
   return (
     <div className="PhotoList d-flex flex-wrap">
-      {photos.map(photo => <Photo key={photo.id} photo={photo}/>)}
+      {photos.map(photo => <Photo key={photo.id} photo={photo} url={photo.smallUrl}/>)}
     </div>
   );
 }
