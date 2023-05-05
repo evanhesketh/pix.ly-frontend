@@ -47,6 +47,7 @@ function Edit({ photos, handleEdit }) {
       <button className="btn btn-secondary" onClick={handleClick}>
         Black and White
       </button>
+      <button onClick={handleClick}>Posterize</button>
     </div>
   );
 }
