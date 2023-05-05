@@ -5,7 +5,7 @@ import Photo from "./Photo"
  * Presentational component: shows list of photos
  *
  * Props:
- * - photos : [{id, url, make, model, date}, ...]
+ * - photos : [{id, largeUrl, smallUrl, make, model, date}, ...]
  *
  * State: none
  *

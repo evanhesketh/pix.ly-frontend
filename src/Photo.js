@@ -6,8 +6,8 @@ import "./Photo.css";
  * Presentational component: shows photo as link to editor
  *
  * Props:
- * - photo : {id, url, make, model, date}
- *
+ * - photo : {id, largeUrl, smallUrl make, model, date}
+ * - url
  * State: none
  *
  * PhotoList --> Photo

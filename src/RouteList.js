@@ -9,6 +9,8 @@ import Edit from "./Edit";
  *
  * props:
  *  -handleSave: function to be called in parent on form submission
+ *  -handleEdit: function to be called in parent on form submission
+ *  -photos: [{id, largeUrl, smallUrl, make, model, date}, ...]
  *
  * state:
  *  -none

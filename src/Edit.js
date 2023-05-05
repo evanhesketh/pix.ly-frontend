@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Photo from "./Photo";
 import Alert from "./Alert";
 import "./Edit.css";
+
 /**
  * Edit a photo.
  *
@@ -12,7 +13,7 @@ import "./Edit.css";
  *  -handleEdit: function to be called in parent
  *
  * state:
- *  -none
+ *  -error: {error: ""}
  *
  * RoutesList -> Edit
  */
@@ -31,7 +32,7 @@ function Edit({ photos, handleEdit }) {
 
   async function handleClick(evt) {
     try {
-      await handleEdit(photo[0].key, evt.target.id);
+      await handleEdit(photo[0].largeUrl, evt.target.id);
       navigate("/");
     } catch (err) {
       console.log("error in edit", err);
@@ -43,7 +44,7 @@ function Edit({ photos, handleEdit }) {
     <div className="Edit text-center">
       {error.error && <Alert error={error.error} type="alert-danger" />}
       <h4 className="Edit-heading">Choose a filter to apply to your image</h4>
-      <Photo photo={photo[0]} url={photo[0].largeUrl}/>
+      <Photo photo={photo[0]} url={photo[0].largeUrl} />
       <button className="btn btn-secondary" onClick={handleClick} id='bw'>
         Black and White
       </button>

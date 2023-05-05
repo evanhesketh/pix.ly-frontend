@@ -19,7 +19,8 @@ import PhotoList from "./PhotoList";
 			"id": 1,
 			"make": null,
 			"model": null,
-			"url": "https://s3.amazonaws.com/evanhesketh-pix.ly/John-Digweed-EDCLV-2017-pc-aLIVE-Coverage.jpeg"
+			"largeUrl": "https://s3.amazonaws.com/evanhesketh-pix.ly/lg-John-Digweed-EDCLV-2017-pc-aLIVE-Coverage.jpeg"
+			"smallUrl": "https://s3.amazonaws.com/evanhesketh-pix.ly/sm-John-Digweed-EDCLV-2017-pc-aLIVE-Coverage.jpeg"
 		}]
  *
  *
