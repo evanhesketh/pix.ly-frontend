@@ -31,6 +31,7 @@ function Edit({ photos, handleEdit }) {
     <div className="Edit">
       <Photo photo={photo[0]} />
       <button onClick={handleClick}>Black and White</button>
+      <button onClick={handleClick}>Posterize</button>
     </div>
   );
 }
