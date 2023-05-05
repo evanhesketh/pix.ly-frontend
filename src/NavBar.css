@@ -1,9 +1,18 @@
 .Navigation {
-    background-color: white;
+    background-color: black;
     border-bottom: 2px solid rgba(0, 0, 0, 0.125);
   }
 
   .nav-link.active {
     font-weight: bold;
-    color: black;
+    color: lightgray !important;
   }
+
+  .nav-link, .navbar-brand {
+    color: white;
+  }
+
+  .nav-link:hover, .navbar-brand:hover {
+    color: lightgray;
+  }
+

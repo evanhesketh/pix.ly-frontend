@@ -1,0 +1,15 @@
+.UploadForm {
+    height: calc(100vh - 10vh);
+}
+
+h3 {
+    padding-bottom: 0.5em;
+}
+
+.UploadForm-label {
+    margin-bottom: 0.3em;
+}
+
+.UploadForm-uploadBtn {
+    margin-top: 0.5em;
+}

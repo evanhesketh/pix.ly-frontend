@@ -13,8 +13,9 @@ import Photo from "./Photo"
  */
 
 function PhotoList({photos}) {
+  console.log("photos ", photos)
   return (
-    <div className="PhotoList">
+    <div className="PhotoList d-flex flex-wrap">
       {photos.map(photo => <Photo key={photo.id} photo={photo}/>)}
     </div>
   );

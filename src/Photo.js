@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import "./Photo.css";
+
 /** Photo
  *
  * Presentational component: shows photo as link to editor
@@ -22,7 +24,6 @@ function Photo({ photo }) {
         <img className="Photo-image" src={url} alt={description} />
       </Link>
       <ul className="Photo-info">
-        <li>Description: {description}</li>
         {make && <li>Make: {make}</li>}
 
         {model && <li>Model: {model}</li>}

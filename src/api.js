@@ -50,8 +50,12 @@ class PixlyApi {
 
     static async editPhoto(key) {
         console.log("key in edit photo", key)
-        let res = await axios.post(`${BASE_URL}/edit`, {"key": key});
-        return res.data.photo;
+        try {
+            let res = await axios.post(`${BASE_URL}/edit`, {"key": key});
+            return res.data.photo;
+        } catch(err) {
+            throw new Error("Image already exists")
+        }
     }
 }
 

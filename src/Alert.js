@@ -11,9 +11,10 @@
  */
 //TODO: prop for type of error
 function Alert({error, type}) {
+  console.log("error in Alert", error)
   return (
     <div className={`Alert alert ${type} role=alert`}>
-      <div className="Alert-msg">{error.message}</div>
+      <div className="Alert-msg">{error}</div>
     </div>
   );
 }
