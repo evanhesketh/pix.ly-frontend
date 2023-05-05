@@ -29,9 +29,9 @@ function Edit({ photos, handleEdit }) {
   console.log("photo in Edit", photo);
   const navigate = useNavigate();
 
-  async function handleClick() {
+  async function handleClick(evt) {
     try {
-      await handleEdit(photo[0].key);
+      await handleEdit(photo[0].key, evt.target.id);
       navigate("/");
     } catch (err) {
       console.log("error in edit", err);
@@ -44,10 +44,10 @@ function Edit({ photos, handleEdit }) {
       {error.error && <Alert error={error.error} type="alert-danger" />}
       <h4 className="Edit-heading">Choose a filter to apply to your image</h4>
       <Photo photo={photo[0]} />
-      <button className="btn btn-secondary" onClick={handleClick}>
+      <button className="btn btn-secondary" onClick={handleClick} id='bw'>
         Black and White
       </button>
-      <button onClick={handleClick}>Posterize</button>
+      <button onClick={handleClick} id='posterize'>Posterize</button>
     </div>
   );
 }

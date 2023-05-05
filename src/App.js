@@ -51,8 +51,8 @@ function App() {
     return <div>Getting photos...</div>;
   }
 
-  async function editPhoto(key) {
-      const editedPhotoData = await PixlyApi.editPhoto(key);
+  async function editPhoto(key, method) {
+      const editedPhotoData = await PixlyApi.editPhoto(key, method) ;
       setPhotoApiData((curr) => ({ ...curr, data: [...curr.data, editedPhotoData] }));
   }
 
