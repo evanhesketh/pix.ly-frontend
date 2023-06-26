@@ -19,8 +19,7 @@ import PhotoList from "./PhotoList";
 			"id": 1,
 			"make": null,
 			"model": null,
-			"largeUrl": "https://s3.amazonaws.com/evanhesketh-pix.ly/lg-John-Digweed-EDCLV-2017-pc-aLIVE-Coverage.jpeg"
-			"smallUrl": "https://s3.amazonaws.com/evanhesketh-pix.ly/sm-John-Digweed-EDCLV-2017-pc-aLIVE-Coverage.jpeg"
+			"url": "https://s3.amazonaws.com/evanhesketh-pix.ly/lg-John-Digweed-EDCLV-2017-pc-aLIVE-Coverage.jpeg"
 		}]
  *
  *
@@ -52,8 +51,8 @@ function App() {
     return <div>Getting photos...</div>;
   }
 
-  async function editPhoto(key, method) {
-      const editedPhotoData = await PixlyApi.editPhoto(key, method) ;
+  async function editPhoto(fileName, method) {
+      const editedPhotoData = await PixlyApi.editPhoto(fileName, method) ;
       setPhotoApiData((curr) => ({ ...curr, data: [...curr.data, editedPhotoData] }));
   }
 

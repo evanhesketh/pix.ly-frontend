@@ -32,7 +32,7 @@ function Edit({ photos, handleEdit }) {
 
   async function handleClick(evt) {
     try {
-      await handleEdit(photo[0].key, evt.target.id);
+      await handleEdit(photo[0].fileName, evt.target.id);
       navigate("/");
     } catch (err) {
       console.log("error in edit", err);
@@ -44,7 +44,7 @@ function Edit({ photos, handleEdit }) {
     <div className="Edit text-center">
       {error.error && <Alert error={error.error} type="alert-danger" />}
       <h4 className="Edit-heading">Choose a filter to apply to your image</h4>
-      <Photo photo={photo[0]} url={photo[0].largeUrl} />
+      <Photo photo={photo[0]} url={photo[0].url} />
       <button className="btn btn-secondary" onClick={handleClick} id='bw'>
         Black and White
       </button>

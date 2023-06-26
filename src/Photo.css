@@ -1,3 +1,7 @@
 .Photo {
     padding: 1em;
 }
+
+.PhotoList .Photo-image {
+    width: 150px;
+}
