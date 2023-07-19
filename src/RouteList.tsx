@@ -2,6 +2,13 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import UploadForm from "./UploadForm";
 import PhotoList from "./PhotoList";
 import Edit from "./Edit";
+import { PhotoInterface } from "./interfaces";
+
+interface RouteListPropsInterface {
+  photos: PhotoInterface[],
+  handleSave: (photo: PhotoInterface) => void,
+  handleEdit: (fileName: String, method: String) => void
+}
 
 /**
  * List of routes for App.
@@ -17,8 +24,7 @@ import Edit from "./Edit";
  *
  * App -> RouteList
  */
-function RouteList({ handleSave, photos, handleEdit }) {
-
+function RouteList({ handleSave, photos, handleEdit }: RouteListPropsInterface) {
   return (
     <Routes>
       <Route path="/" element={<PhotoList photos={photos} />}/>
