@@ -4,8 +4,7 @@ import RouteList from "./RouteList";
 import { useState, useEffect } from "react";
 import PixlyApi from "./api";
 import NavBar from "./NavBar";
-import SearchForm from "./SearchForm";
-import PhotoList from "./PhotoList";
+import { PhotoApiDataInterface, PhotoInterface } from "./interfaces";
 
 /** App
  *
@@ -19,14 +18,14 @@ import PhotoList from "./PhotoList";
 			"id": 1,
 			"make": null,
 			"model": null,
-			"url": "https://s3.amazonaws.com/evanhesketh-pix.ly/lg-John-Digweed-EDCLV-2017-pc-aLIVE-Coverage.jpeg"
+			"url": "https://s3.amazonaws.com/evanhesketh-pix.ly/trees.jpeg"
 		}]
  *
  *
  */
 function App() {
-  const [photoApiData, setPhotoApiData] = useState({
-    data: null,
+  const [photoApiData, setPhotoApiData] = useState<PhotoApiDataInterface>({
+    data: [],
     isLoading: true,
     errors: null,
   });
@@ -35,15 +34,18 @@ function App() {
 
   useEffect(function fetchPhotoData() {
     async function fetchPhotos() {
-      const photos = await PixlyApi.getPhotos();
-      setPhotoApiData({ isLoading: false, data: photos, errors: null });
+      try{
+        const photos: PhotoInterface[] = await PixlyApi.getPhotos();
+        setPhotoApiData({ isLoading: false, data: photos, errors: null });
+      } catch (err) {
+        setPhotoApiData({isLoading: false, data: [], errors: [err]})
+      }
     }
     fetchPhotos();
   }, []);
 
-  async function uploadPhoto({ photo }) {
-    console.log("inside uploadPhoto", photo)
-    const newPhotoData = await PixlyApi.uploadPhoto(photo);
+  async function uploadPhoto({ photo }: {photo: String}) {
+    const newPhotoData: PhotoInterface = await PixlyApi.uploadPhoto(photo);
     setPhotoApiData((curr) => ({ ...curr, data: [...curr.data, newPhotoData] }));
   }
 
@@ -51,8 +53,13 @@ function App() {
     return <div>Getting photos...</div>;
   }
 
-  async function editPhoto(fileName, method) {
-      const editedPhotoData = await PixlyApi.editPhoto(fileName, method) ;
+  if (photoApiData.errors) {
+    console.log(photoApiData.errors[0]);
+    return <div>Sorry, something went wrong.</div>;
+  }
+
+  async function editPhoto(fileName: String, method: String) {
+      const editedPhotoData: PhotoInterface = await PixlyApi.editPhoto(fileName, method);
       setPhotoApiData((curr) => ({ ...curr, data: [...curr.data, editedPhotoData] }));
   }
 
@@ -60,7 +67,6 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <NavBar />
-        {/* <SearchForm handleSearchSubmit={handleSearchSubmit} /> */}
         <RouteList handleSave={uploadPhoto} photos={photoApiData.data} handleEdit={editPhoto}/>
       </BrowserRouter>
     </div>

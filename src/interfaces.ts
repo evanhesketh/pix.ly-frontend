@@ -7,4 +7,10 @@ interface PhotoInterface {
   date: string | null
 };
 
-export type {PhotoInterface};
+interface PhotoApiDataInterface {
+  data: PhotoInterface[],
+  isLoading: Boolean,
+  errors: Array<any> | null
+};
+
+export type {PhotoInterface, PhotoApiDataInterface};
