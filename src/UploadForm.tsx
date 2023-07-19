@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useState, ChangeEvent, FormEvent } from "react";
 import Alert from "./Alert";
 import { useNavigate } from "react-router-dom";
 import "./UploadForm.css";
+
+const INITIAL_FORM_DATA = { photo: null, errors: null };
+
+interface FormDataInterface {
+  photo: File | null,
+  errors: null | any[]
+}
+
 /** Upload form
  *
  * Form for uploading a new image file
@@ -16,36 +24,37 @@ import "./UploadForm.css";
  *
  *
  */
-
-const INITIAL_FORM_DATA = { photo: "" };
-
-function UploadForm({ handleSave }) {
-  const [formData, setFormData] = useState(INITIAL_FORM_DATA);
+function UploadForm({ handleSave }: {handleSave: (photo: File) => Promise<void>}) {
+  const [formData, setFormData] = useState<FormDataInterface>(INITIAL_FORM_DATA);
   const navigate = useNavigate();
 
   console.log("formData in UploadForm", formData);
 
   /** Update form input. */
-  function handleChange(evt) {
+  function handleChange(evt: ChangeEvent<HTMLInputElement>) {
     const input = evt.target;
+
     setFormData((formData) => ({
       ...formData,
-      [input.name]: input.files[0],
+      [input.name]: input?.files?.[0],
     }));
+
   }
 
   /** Call parent function and redirect home on success, otherwise display errors. */
-  async function handleSubmit(evt) {
+  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
     evt.preventDefault();
+
     try {
-      await handleSave(formData);
+      await handleSave(formData.photo!);
       navigate("/");
-    } catch (err) {
+    } catch (err: any) {
       setFormData({ ...formData, errors: [err.message] });
     }
+
   }
 
-  //TODO: look into useRef hook (later)
+  //TODO: look into useRef hook
   return (
     <div className="UploadForm d-flex flex-column align-items-center justify-content-center">
       <h3>Upload a photo!</h3>
@@ -60,7 +69,6 @@ function UploadForm({ handleSave }) {
           type="file"
           id="UploadForm-photo"
           name="photo"
-          // value={formData.photo}
           aria-label="Photo"
           onChange={handleChange}
         />
