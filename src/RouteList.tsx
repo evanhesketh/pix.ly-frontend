@@ -6,8 +6,8 @@ import { PhotoInterface } from "./interfaces";
 
 interface RouteListPropsInterface {
   photos: PhotoInterface[],
-  handleSave: (photo: PhotoInterface) => void,
-  handleEdit: (fileName: String, method: String) => void
+  handleSave: (photo: PhotoInterface) => Promise<void>,
+  handleEdit: (fileName: String, method: String) => Promise<void>
 }
 
 /**
