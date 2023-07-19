@@ -9,8 +9,7 @@
  *
  * {LoginForm, SignupForm} -> Alert
  */
-//TODO: prop for type of error
-function Alert({error, type}) {
+function Alert({error, type}: {error: any, type: String}) {
   console.log("error in Alert", error)
   return (
     <div className={`Alert alert ${type} role=alert`}>
