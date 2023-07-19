@@ -44,7 +44,7 @@ function App() {
     fetchPhotos();
   }, []);
 
-  async function uploadPhoto({ photo }: {photo: String}) {
+  async function uploadPhoto({ photo }: {photo: File}) {
     const newPhotoData: PhotoInterface = await PixlyApi.uploadPhoto(photo);
     setPhotoApiData((curr) => ({ ...curr, data: [...curr.data, newPhotoData] }));
   }
